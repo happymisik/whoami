@@ -15,12 +15,12 @@ df = pd.read_csv("dinosourquize.csv", encoding='utf-8')
 num = 0
 list_from_df = df.values.tolist()
 for data in list_from_df:
-    print("{}번 문제 : {}".format(num  + 1, list_from_df[num][0]))
-    print("{}번문제의 힌트1 : {}".format(num + 1, list_from_df[num][1]))
-    print("{}번문제의 힌트2 : {}".format(num + 1, list_from_df[num][2]))
-    print("{}번문제의 힌트3 : {}".format(num + 1, list_from_df[num][3]))
-    print("{}번문제의 힌트4 : {}".format(num + 1, list_from_df[num][4]))
-    print("{}번문제의 힌트5 : {}".format(num + 1, list_from_df[num][5]))
+    print("{}번 문제 : {}".format(num  + 1, list_from_df[num][1]))
+    print("{}번문제의 힌트1 : {}".format(num + 1, list_from_df[num][2]))
+    print("{}번문제의 힌트2 : {}".format(num + 1, list_from_df[num][3]))
+    print("{}번문제의 힌트3 : {}".format(num + 1, list_from_df[num][4]))
+    print("{}번문제의 힌트4 : {}".format(num + 1, list_from_df[num][5]))
+    print("{}번문제의 힌트5 : {}".format(num + 1, list_from_df[num][6]))
     num = num + 1
     # print("{}번 문제 : {}".format(num+1,list_from_df[num][0]))
 
@@ -38,10 +38,19 @@ def index():
     return 'Hello Flask'
 
 
-@app.route('/dinosaur_name', methods=['POST'])
+@app.route('/startGameAction', methods=['POST'])
 def createQuize():
+
     response = commonResponse
-    randomNumber = random.randint(0, 1)
+    randomNumber = random.randrange(0, 50)
+
+    response['output']['quiz'] = list_from_df[randomNumber][1]
+    response['output']['hint1'] = list_from_df[randomNumber][2]
+    response['output']['hint2'] = list_from_df[randomNumber][3]
+    response['output']['hint3'] = list_from_df[randomNumber][4]
+    response['output']['hint4'] = list_from_df[randomNumber][5]
+    response['output']['hint5'] = list_from_df[randomNumber][6]
+
     print(randomNumber)
     print(response)
 
